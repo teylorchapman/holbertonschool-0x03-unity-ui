@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 	public GameObject player;
 	public Vector3 cameraOffset;
 
-	void LateUpdate ()
+	private void LateUpdate ()
 	{
 		if (player != null)
 		{
