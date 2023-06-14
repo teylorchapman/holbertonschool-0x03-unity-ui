@@ -36,6 +36,23 @@ public class PlayerController : MonoBehaviour
 		{
 			health--;
 			Debug.Log("Health: " + health);
+
+			if (health <= 0)
+			{
+				GameOver();
+			}
 		}
+		else if (other.CompareTag("Goal"))
+		{
+			Debug.Log("You win!");
+		}
+	}
+
+	private void GameOver()
+	{
+		Debug.Log("Game Over!");
+		score = 0;
+		health = 5;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
