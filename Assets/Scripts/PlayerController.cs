@@ -47,25 +47,26 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (other.CompareTag("Goal"))
 		{
-			///winLoseBG.SetActive(true);
 			winLoseText.text = "You Win!";
 			winLoseText.color = Color.black;
 			winLoseBG.color = Color.green;
+			winLoseBG.gameObject.SetActive(true);
 			StartCoroutine(LoadScene(3));
 		}
 	}
 
 	private void GameOver()
 	{
-		///winLoseBG.SetActive(true);
 		winLoseText.text = "Game Over!";
 		winLoseText.color = Color.white;
 		winLoseBG.color = Color.red;
+		winLoseBG.gameObject.SetActive(true);
 		
 		score = 0;
 		health = 5;
 		SetScoreText();
 		SetHeatlhText();
+
 		StartCoroutine(LoadScene(3));
 	}
 
