@@ -1,3 +1,3 @@
-# 0x02. Unity - Scripting
+# 0x03. Unity - UI
 
 This is the unity maze project :)

@@ -1,13 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 	public float speed = 2f;
 	private int score = 0;
 	public int health = 5;
+	public Text scoreText, healthText, winLoseText;
+	public Image winLoseBG;
 
 	private Rigidbody playerRigidBody;
 	private void Start ()
@@ -29,13 +32,13 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag("Pickup"))
 		{
 			score++;
-			Debug.Log("Score: " + score);
+			SetScoreText();
 			Destroy(other.gameObject);
 		}
 		else if (other.CompareTag("Trap"))
 		{
 			health--;
-			Debug.Log("Health: " + health);
+			SetHeatlhText();
 
 			if (health <= 0)
 			{
@@ -44,15 +47,41 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (other.CompareTag("Goal"))
 		{
-			Debug.Log("You win!");
+			///winLoseBG.SetActive(true);
+			winLoseText.text = "You Win!";
+			winLoseText.color = Color.black;
+			winLoseBG.color = Color.green;
+			StartCoroutine(LoadScene(3));
 		}
 	}
 
 	private void GameOver()
 	{
-		Debug.Log("Game Over!");
+		///winLoseBG.SetActive(true);
+		winLoseText.text = "Game Over!";
+		winLoseText.color = Color.white;
+		winLoseBG.color = Color.red;
+		
 		score = 0;
 		health = 5;
+		SetScoreText();
+		SetHeatlhText();
+		StartCoroutine(LoadScene(3));
+	}
+
+	public void SetScoreText()
+	{
+		scoreText.text = "Score: " + score.ToString();
+	}
+
+	public void SetHeatlhText()
+	{
+		healthText.text = "Health: " + health.ToString();
+	}
+
+	IEnumerator LoadScene(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
