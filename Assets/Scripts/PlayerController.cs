@@ -85,4 +85,17 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(seconds);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+		}
+	}
+
+	private void LoadMenuScene()
+	{
+		SceneManager.LoadScene("maze");
+	}
 }
